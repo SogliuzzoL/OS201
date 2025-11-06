@@ -75,7 +75,6 @@ int main() {
 
     char result[BUFFER_SIZE];
     read(pipe_from_child[0], result, BUFFER_SIZE);
-    // write(1, result, BUFFER_SIZE);
     printf("%s", result);
   }
   return 0;
