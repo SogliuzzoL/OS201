@@ -32,6 +32,10 @@ void producer(void) {
     }
     task.queue_state = QUEUE_FULL;
     task.last_char = (char)c;
+    if (c == 'e') {
+      modify_stack();
+    }
+
     println("%%% QUEUE FULL");
   }
 }
@@ -82,7 +86,12 @@ void init_terminal(int echo) {
   tcsetattr(0, TCSANOW, &settings);
 }
 
+void handler(int sig) {
+  printf("Erreur %d sur le Thread %i\n", sig, get_current_thread());
+}
+
 int main() {
+  signal(SIGSEGV, handler);
   print_adress();
   init_terminal(0);
   println("- INIT");

@@ -137,3 +137,7 @@ void print_adress() {
            (__uint64_t)stacks[i] % 4096);
   }
 }
+
+void modify_stack() { *stacks[2] = 1; }
+
+int get_current_thread() { return state.current->id; }

@@ -12,3 +12,7 @@ void yield();
 void start_scheduler(void);
 
 void print_adress(void);
+
+void modify_stack(void);
+
+int get_current_thread(void);
