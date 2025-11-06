@@ -22,6 +22,15 @@ int main(int argc, char *argv[]) {
     write(1, result, 4);
   }
 
+  // MINUS operation
+  else if (buffer[0] == '-') {
+    int a, b;
+    char result[4];
+    sscanf(buffer, "-%d,%d", &a, &b);
+    sprintf(result, "%d\n\0", a - b);
+    write(1, result, 4);
+  }
+
   // System command execution
   else if (buffer[0] == 'e') {
     // prctl(PR_SET_SECCOMP, SECCOMP_MODE_STRICT);
@@ -43,6 +52,15 @@ void run_interpreter(int read_fd, int write_fd) {
     char result[4];
     sscanf(buffer, "+%d,%d", &a, &b);
     sprintf(result, "%d\n\0", a + b);
+    write(write_fd, result, 4);
+  }
+
+  // MINUS operation
+  else if (buffer[0] == '-') {
+    int a, b;
+    char result[4];
+    sscanf(buffer, "-%d,%d", &a, &b);
+    sprintf(result, "%d\n\0", a - b);
     write(write_fd, result, 4);
   }
 
